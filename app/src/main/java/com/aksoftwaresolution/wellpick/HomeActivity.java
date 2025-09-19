@@ -3,9 +3,7 @@ package com.aksoftwaresolution.wellpick;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,31 +22,52 @@ import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class HomeActivity extends AppCompatActivity implements UserContract.View {
+    private ProgressBar progressBar;
+    private RecyclerView recyclerView;
+    private UserPresenter presenter;
+    private UserAdapter adapter;
 
-    private static int SPLASH_TIME_OUT = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        progressBar = findViewById(R.id.progressBar);
+        recyclerView = findViewById(R.id.recyclerView);
 
-// Delay দিয়ে অন্য Activity তে নেওয়া
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(i);
-                finish(); // Splash শেষ হলে আর ফেরা যাবে না
-            }
-        }, SPLASH_TIME_OUT);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        presenter=new UserPresenter(this,new UserModel(this));
+        presenter.getUsers();
+    }
 
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(VISIBLE);
 
     }
 
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(GONE);
+
+    }
+
+    @Override
+    public void onGetUsersSuccess(List<User> users) {
+        adapter=new UserAdapter(users);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onGetUsersFailure(String error) {
+        Toast.makeText(this,"Error"+error,Toast.LENGTH_LONG).show();
+
+    }
 }

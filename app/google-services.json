@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "451739574138",
+    "project_id": "wellpickapp-2110f",
+    "storage_bucket": "wellpickapp-2110f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451739574138:android:88916f80cf5e0a40bd80c3",
+        "android_client_info": {
+          "package_name": "com.aksoftwaresolution.wellpick"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcjXQvII_HqvbjpTJ9LLMqGyi0-c6coLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
