@@ -1,17 +1,33 @@
 package com.aksoftwaresolution.wellpick.model;
 
 public class User {
+    private String id;
     private String name;
-    private String email;
-    private String phone;
+    private String encodeImage;
+    private String description;
 
-    public User(String name, String email, String phone) {
+    public User(String id, String name, String encodeImage,String description) {
+        this.id = id;
         this.name = name;
-        this.email = email;
-        this.phone = phone;
+        this.encodeImage = encodeImage;
+        this.description = description;
+
     }
 
+
+
+
     public String getName() { return name; }
-    public String getEmail() { return email; }
-    public String getPhone() { return phone; }
+
+    public String getdescription() { return description; }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getEncodeImage() {
+        return encodeImage;
+    }
+
+
 }

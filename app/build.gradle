@@ -41,7 +41,8 @@ dependencies {
     implementation libs.volley
     implementation(platform("com.google.firebase:firebase-bom:34.2.0"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation libs.bottonnavigationview
+    implementation 'com.github.bumptech.glide:glide:5.0.5'
+
 
 
 

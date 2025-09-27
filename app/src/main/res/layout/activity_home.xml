@@ -7,28 +7,130 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:orientation="vertical"
+    android:background="#C7CFFBFA"
     >
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <com.aksoftwaresolution.navigationview.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        app:mcn_backgroundColor="#EFC486"
-        app:mcn_circleColor="#FFFFFF"
-        app:mcn_iconColor="#FF5722"
-        app:mcn_selectedIconColor="#FF5722"
-        app:menu="@menu/bottom_nav_menu"
-        />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:background="#F8F1FF">
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:orientation="horizontal"
+           android:gravity="center|right"
+           android:background="#C7CFFBFA"
+           >
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:gravity="center|left"
+               android:orientation="vertical"
+               >
+
+               <ImageView
+                   android:id="@+id/homeIcon"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:src="@drawable/img_3"
+                   android:layout_marginLeft="110dp"
+                   />
+
+
+           </LinearLayout>
+           <ImageView
+               android:id="@+id/premiumIcon"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:src="@drawable/img_1"
+               android:layout_margin="10dp"
+               />
+
+           <ImageView
+               android:id="@+id/profileIcon"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:src="@drawable/img"
+               android:layout_margin="10dp"
+               />
+
+
+
+
+
+
+       </LinearLayout>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="#fff"
+           >
+           <androidx.drawerlayout.widget.DrawerLayout
+               android:id="@+id/drawerlayout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+
+               >
+               <androidx.coordinatorlayout.widget.CoordinatorLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   >
+
+
+
+                   <FrameLayout
+                       android:id="@+id/FrameLayout"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       
+                       />
+
+               </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+               <com.google.android.material.navigation.NavigationView
+                   android:id="@+id/NavigationView"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_gravity="start"
+                   app:headerLayout="@layout/nav_header"
+                   app:menu="@menu/nav_items"
+                   app:itemIconTint="#FAAA91"
+
+                   />
+
+
+
+
+
+           </androidx.drawerlayout.widget.DrawerLayout>
+
+           <com.google.android.material.bottomnavigation.BottomNavigationView
+               android:id="@+id/bottomnavigation"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               app:menu="@menu/bottom_nav_menu"
+               app:itemIconTint="#FAAA91"
+               android:pointerIcon="zoom_in"
+               android:background="#C7CFFBFA"
+               android:layout_above="@id/drawerlayout"
+               />
+
+
+       </RelativeLayout>
+
+
+   </LinearLayout>
+
+
+
+
+
+
 
 </RelativeLayout>
