@@ -30,7 +30,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aksoftwaresolution.wellpick.CryptoUtil.CryptoUtil;
+import com.aksoftwaresolution.wellpick.FragmentManager.ExploreFragment;
 import com.aksoftwaresolution.wellpick.FragmentManager.HomeFragment;
+import com.aksoftwaresolution.wellpick.FragmentManager.PremiumFragment;
+import com.aksoftwaresolution.wellpick.FragmentManager.Profile_Fragment;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.User;
 import com.aksoftwaresolution.wellpick.model.UserModel;
@@ -80,13 +83,13 @@ public class HomeActivity extends AppCompatActivity  {
                     setFragmentManager(new HomeFragment());
                     drawerlayout.closeDrawer(GravityCompat.START);
                 }else if (menuItem.getItemId()==R.id.exploreIcon){
-                    setFragmentManager(new HomeFragment());
+                    setFragmentManager(new ExploreFragment());
                     drawerlayout.closeDrawer(GravityCompat.START);
                 }else if (menuItem.getItemId()==R.id.premiumIcon){
-                    setFragmentManager(new HomeFragment());
+                    setFragmentManager(new PremiumFragment());
                     drawerlayout.closeDrawer(GravityCompat.START);
                 }else if (menuItem.getItemId()==R.id.profileIcon){
-                    setFragmentManager(new HomeFragment());
+                    setFragmentManager(new Profile_Fragment());
                     drawerlayout.closeDrawer(GravityCompat.START);
                 }else if (menuItem.getItemId()==R.id.AboutIcon){
                     setFragmentManager(new HomeFragment());
@@ -104,11 +107,11 @@ public class HomeActivity extends AppCompatActivity  {
              if (menuItem.getItemId()==R.id.homeIcon){
                  setFragmentManager(new HomeFragment());
              }else if (menuItem.getItemId()==R.id.exploreIcon){
-                 setFragmentManager(new HomeFragment());
+                 setFragmentManager(new ExploreFragment());
              }else if (menuItem.getItemId()==R.id.premiumIcon){
-                 setFragmentManager(new HomeFragment());
+                 setFragmentManager(new PremiumFragment());
              }else if (menuItem.getItemId()==R.id.profileIcon){
-                 setFragmentManager(new HomeFragment());
+                 setFragmentManager(new Profile_Fragment());
              }
 
 

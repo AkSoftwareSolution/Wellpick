@@ -6,7 +6,8 @@ import com.aksoftwaresolution.wellpick.model.User;
 
 import java.util.List;
 
-public class UserPresenter implements UserContract.Presenter,UserContract.Model.OnFinishedListener, UserContract.Model.OnCategoryFinishedListener {
+public class UserPresenter implements UserContract.Presenter,UserContract.Model.OnFinishedListener,
+        UserContract.Model.OnCategoryFinishedListener {
     private UserContract.View view;
     private UserContract.Model model;
     public UserPresenter(UserContract.View view, UserContract.Model model) {
