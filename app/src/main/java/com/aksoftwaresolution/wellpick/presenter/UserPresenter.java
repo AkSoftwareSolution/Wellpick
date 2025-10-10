@@ -2,12 +2,13 @@ package com.aksoftwaresolution.wellpick.presenter;
 
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
+import com.aksoftwaresolution.wellpick.model.MultipleItemList;
 import com.aksoftwaresolution.wellpick.model.User;
 
 import java.util.List;
 
 public class UserPresenter implements UserContract.Presenter,UserContract.Model.OnFinishedListener,
-        UserContract.Model.OnCategoryFinishedListener {
+        UserContract.Model.OnCategoryFinishedListener, UserContract.Model.OnMultipleFinishedListener {
     private UserContract.View view;
     private UserContract.Model model;
     public UserPresenter(UserContract.View view, UserContract.Model model) {
@@ -41,6 +42,7 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
         }
         model.getPopularImages(this);
         model.getCategory(this);
+        model.getMultipleItem(this);
 
 
     }
@@ -59,6 +61,24 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
         if (view!=null){
             view.hideLoading();
             view.onGetCategoryFailure(error);
+        }
+
+    }
+
+    @Override
+    public void OnMultipleFinished(List<MultipleItemList> multipleItemLists) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetMultipleSuccess(multipleItemLists);
+        }
+
+    }
+
+    @Override
+    public void onMultipleFailure(String error) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetMultipleFailure(error);
         }
 
     }

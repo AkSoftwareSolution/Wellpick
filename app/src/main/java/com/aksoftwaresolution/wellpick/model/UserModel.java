@@ -135,4 +135,9 @@ public class UserModel implements UserContract.Model {
 
 
     }
+
+    @Override
+    public void getMultipleItem(OnMultipleFinishedListener listener) {
+
+    }
 }
