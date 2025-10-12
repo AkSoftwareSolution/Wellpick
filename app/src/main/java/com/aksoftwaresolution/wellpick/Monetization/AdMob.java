@@ -1,15 +1,20 @@
 package com.aksoftwaresolution.wellpick.Monetization;
 
+
 import static com.google.firebase.messaging.Constants.TAG;
 
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.ads.nativetemplates.NativeTemplateStyle;
+import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -18,11 +23,15 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 public class AdMob {
 
     private AdMobCallback adMobCallback;
     private static InterstitialAd minterstitialAd;
+    private static RewardedAd rewardedAd;
 
     public AdMob() {
     }
@@ -119,6 +128,74 @@ public class AdMob {
 
 
     }//======showInterstitialAd end here ===================================
+
+    public static void loadRewardedAd(Context context){
+        if (!Constant.IS_AD_ON)return;
+
+        AdRequest adRequest=new AdRequest.Builder().build();
+
+        RewardedAd.load(context, Constant.Rewarded_Ad, adRequest, new RewardedAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull RewardedAd ad) {
+                rewardedAd=ad;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+               rewardedAd=null;
+            }
+        });
+    }//====loadRewardedAd end here============================================
+
+
+    public void showRewardedAd(Activity activity,boolean isReload){
+
+        if (!Constant.IS_AD_ON){
+            notifyDismiss();
+            return;
+        }
+
+        if (rewardedAd==null){
+            notifyDismiss();
+            return;
+        }
+
+        rewardedAd.show(activity,rewardItem -> {
+            if (adMobCallback!=null){
+                adMobCallback.onUserEarnedReward(rewardItem);
+            }
+
+            if (isReload){
+                loadRewardedAd(activity);
+            }
+
+
+        });
+
+
+
+    }//=========== showRewardedAd end here =======================
+
+    public static void setNativeAd(Activity activity, TemplateView templateView){
+        if (!Constant.IS_AD_ON)return;
+        if (templateView==null)return;
+
+        AdLoader adLoader = new AdLoader.Builder(activity, Constant.Native_Ad)
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                    @Override
+                    public void onNativeAdLoaded(NativeAd nativeAd) {
+                      templateView.setVisibility(View.VISIBLE);
+                      templateView.setNativeAd(nativeAd);
+                    }
+                })
+                .build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
+
+
+
+
+    }//=============setNativeAd end here ==========================================
 
 
     private void notifyDismiss(){
