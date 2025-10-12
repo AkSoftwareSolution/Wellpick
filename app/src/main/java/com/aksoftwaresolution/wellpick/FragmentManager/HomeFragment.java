@@ -18,6 +18,7 @@ import com.aksoftwaresolution.wellpick.R;
 import com.aksoftwaresolution.wellpick.UserAdapter;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
+import com.aksoftwaresolution.wellpick.model.MultipleItemList;
 import com.aksoftwaresolution.wellpick.model.User;
 import com.aksoftwaresolution.wellpick.model.UserModel;
 import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
@@ -78,6 +79,16 @@ public class HomeFragment extends Fragment implements UserContract.View {
     public void onGetCategorySuccess(List<CategoryList> categoryLists) {
         categoryAdapter=new CategoryAdapter(categoryLists,getContext());
         CategoryRecyclerview.setAdapter(categoryAdapter);
+
+    }
+
+    @Override
+    public void onGetMultipleSuccess(List<MultipleItemList> multipleItemLists) {
+
+    }
+
+    @Override
+    public void onGetMultipleFailure(String error) {
 
     }
 
