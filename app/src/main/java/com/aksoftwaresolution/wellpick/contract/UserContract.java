@@ -6,7 +6,7 @@ import com.aksoftwaresolution.wellpick.model.User;
 
 public interface UserContract {
 
-    interface View {
+   public interface View {
         void showLoading();
         void hideLoading();
         void onGetUsersSuccess(java.util.List<User> users);
@@ -22,7 +22,7 @@ public interface UserContract {
 
     }
 
-    interface Model {
+    public interface Model {
         void getPopularImages(OnFinishedListener listener);
         void getCategory(OnCategoryFinishedListener listener);
         void getMultipleItem(OnMultipleFinishedListener listener);
