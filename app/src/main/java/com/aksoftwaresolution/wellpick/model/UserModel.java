@@ -3,12 +3,16 @@ package com.aksoftwaresolution.wellpick.model;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.aksoftwaresolution.wellpick.CryptoUtil.CryptoUtil;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -17,13 +21,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserModel implements UserContract.Model {
     private Context context;
     CryptoUtil cryptoUtil=new CryptoUtil();
     private static final String url="https://wellpick.xyz/wellpick/ViewPopularImages.php";
     private static final String CategoryUrl="https://www.wellpick.xyz/wellpick/CategoreyPostView.php";
+    private static final String SubCategoryUrl="https://wellpick.xyz/wellpickAdmin/SubCategory.php";
     public UserModel(Context context){
         this.context=context;
 
@@ -96,7 +103,7 @@ public class UserModel implements UserContract.Model {
         }
 
 
-        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.POST, CategoryUrl, jsonArray, new Response.Listener<JSONArray>() {
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.POST,CategoryUrl, jsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
 
@@ -135,9 +142,118 @@ public class UserModel implements UserContract.Model {
 
 
     }
-
     @Override
-    public void getMultipleItem(OnMultipleFinishedListener listener) {
+    public void SubCategoriesData(String categoryId, OnSubCategoriesFinishedListener onSubCategoriesFinishedListener) {
+
+        JSONArray jsonArray = new JSONArray();
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("password", "loadPopularImages");
+            jsonObject.put("categoryId", categoryId); // তোমার categoryId অনুযায়ী বসাও
+            jsonArray.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        List<SubCategory>subCategories=new ArrayList<>();
+
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.POST,
+                SubCategoryUrl,
+                jsonArray,
+                response -> {
+                    // Response সফলভাবে এলে এখানে আসবে
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj = response.getJSONObject(i);
+                            int id = obj.getInt("id");
+                            String name = obj.getString("name");
+                            String imageUrl = obj.getString("image_url");
+                            subCategories.add(new SubCategory(id,name,imageUrl));
+
+                            Log.d("ImageData", "Name: " + name + ", Image: " + imageUrl);
+                            // এখান থেকে RecyclerView এ পাঠাও
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                   onSubCategoriesFinishedListener.onSubCategoriesFinished(subCategories);
+
+                },
+                error -> {
+                    // Error হলে এখানে আসবে
+                    if (error.networkResponse != null) {
+                        Log.e("VolleyError", "Status Code: " + error.networkResponse.statusCode);
+                    }
+                    Log.e("VolleyError", "Message: " + error.getMessage());
+                    onSubCategoriesFinishedListener.onSubCategoriesFailure(error.toString());
+                }
+        );
+
+// Request Queue তে যোগ করা
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
 
     }
+
+    @Override
+    public void getPopularItemImages(OnPopularFinishedListener onPopularFinishedListener) {
+        JSONArray jsonArray=new JSONArray();
+        JSONObject jsonObject=new JSONObject();
+
+
+        try {
+            jsonObject.put("password",cryptoUtil.encrypt("loadPopularImages"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        jsonArray.put(jsonObject);
+
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.POST,
+                url,
+                jsonArray,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        List<MultipleItemList> PopularList = new ArrayList<>();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject object=response.getJSONObject(i);
+
+                                String id = object.getString("id");
+                                String name = object.getString("name");
+                                String encodeImage = object.getString("encodeImage");
+
+
+                                Log.d("response",id+name+encodeImage);
+
+                                PopularList.add(new MultipleItemList(id,name,encodeImage));
+
+                            }
+                            onPopularFinishedListener.onPopularFinished(PopularList);
+                        } catch (JSONException e) {
+                            onPopularFinishedListener.onPopularFailure(e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        onPopularFinishedListener.onPopularFailure(error.toString());
+                    }
+                });
+
+
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
+
+    }
+
+    @Override
+    public void getPremiumImages(OnPremiumFinishedListener onPremiumFinishedListener) {
+
+    }
+
+
 }

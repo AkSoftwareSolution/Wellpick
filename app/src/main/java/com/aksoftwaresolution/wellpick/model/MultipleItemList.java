@@ -2,29 +2,48 @@ package com.aksoftwaresolution.wellpick.model;
 
 public class MultipleItemList {
 
-    private  String ItemId;
-    private  String ItemTitle;
-    private String ItemDescription;
+    private  String popularId;
+    private  String popularTitle;
+    private String popularImages;
+    private int premiumId;
+    private String premiumTitle;
+    private String premiumImages;
 
-    public MultipleItemList(String ItemId,String ItemTitle,String ItemDescription){
-        this.ItemId=ItemId;
-        this.ItemTitle=ItemTitle;
-        this.ItemDescription=ItemDescription;
+    public MultipleItemList(String popularId,String popularTitle,String popularImages){
+        this.popularId=popularId;
+        this.popularTitle=popularTitle;
+        this.popularImages=popularImages;
 
     }
+ public MultipleItemList(int premiumId,String premiumTitle,String premiumImages){
+        this.premiumId=premiumId;
+        this.premiumTitle=premiumTitle;
+        this.premiumImages=premiumImages;
+
+ }
 
 
-
-
-    public String getItemId() {
-        return ItemId;
+    public String getPopularId() {
+        return popularId;
     }
 
-    public String getItemTitle() {
-        return ItemTitle;
+    public String getPopularTitle() {
+        return popularTitle;
     }
 
-    public String getItemDescription() {
-        return ItemDescription;
+    public String getPopularImages() {
+        return popularImages;
+    }
+
+    public int getPremiumId() {
+        return premiumId;
+    }
+
+    public String getPremiumTitle() {
+        return premiumTitle;
+    }
+
+    public String getPremiumImages() {
+        return premiumImages;
     }
 }

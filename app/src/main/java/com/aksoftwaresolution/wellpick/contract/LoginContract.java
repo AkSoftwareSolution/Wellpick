@@ -2,9 +2,9 @@ package com.aksoftwaresolution.wellpick.contract;
 
 import com.aksoftwaresolution.wellpick.model.LoginList;
 
-public class LoginContract {
+public interface LoginContract {
 
-   public interface LoginView {
+    interface LoginView {
         void showLoading();
 
         void hideLoading();
@@ -17,7 +17,7 @@ public class LoginContract {
        void onSignUpFailure(String error);
     }
 
-   public interface LoginPresenter {
+    interface LoginPresenter {
         void login(String loginName, String loginPassword);
        void signUp(String name, String email, String password);
 
@@ -25,7 +25,7 @@ public class LoginContract {
     }
 
 
-    public interface LoginModel {
+    interface LoginModel {
         void doLogin(String loginName, String loginPassword, OnLoginFinishedListener loginFinishedListener);
 
         void signUpUser(String name, String email, String password, OnSignUpListener listener);

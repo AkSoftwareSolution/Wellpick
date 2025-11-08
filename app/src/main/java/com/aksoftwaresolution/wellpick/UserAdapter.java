@@ -41,7 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         User user = userList.get(position);
 
 
-        Glide.with(context).load("https://wellpick.xyz/wellpick/popular/"+user.getEncodeImage()).into(holder.ItemImages);
+        Glide.with(context).load("https://wellpick.xyz/wellpickAdmin/popular/"+user.getEncodeImage()).into(holder.ItemImages);
 
 
     }

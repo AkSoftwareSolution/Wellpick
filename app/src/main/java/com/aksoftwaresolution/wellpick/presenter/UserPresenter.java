@@ -3,12 +3,15 @@ package com.aksoftwaresolution.wellpick.presenter;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
 import com.aksoftwaresolution.wellpick.model.MultipleItemList;
+import com.aksoftwaresolution.wellpick.model.SubCategory;
 import com.aksoftwaresolution.wellpick.model.User;
 
 import java.util.List;
 
 public class UserPresenter implements UserContract.Presenter,UserContract.Model.OnFinishedListener,
-        UserContract.Model.OnCategoryFinishedListener, UserContract.Model.OnMultipleFinishedListener {
+        UserContract.Model.OnCategoryFinishedListener,
+        UserContract.Model.OnSubCategoriesFinishedListener,UserContract.Model.OnPopularFinishedListener,
+        UserContract.Model.OnPremiumFinishedListener {
     private UserContract.View view;
     private UserContract.Model model;
     public UserPresenter(UserContract.View view, UserContract.Model model) {
@@ -42,8 +45,37 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
         }
         model.getPopularImages(this);
         model.getCategory(this);
-        model.getMultipleItem(this);
 
+
+
+    }
+
+    @Override
+    public void loadSubCategories(String categoryId) {
+        if (view!=null){
+            view.showLoading();
+           model.SubCategoriesData(categoryId,this);
+        }
+
+    }
+
+
+
+    @Override
+    public void loadPopularImages() {
+        if (view!=null){
+            view.showLoading();
+            model.getPopularItemImages(this);
+        }
+
+    }
+
+    @Override
+    public void loadPremiumImages() {
+        if (view!=null){
+            view.showLoading();
+            model.getPremiumImages(this);
+        }
 
     }
 
@@ -66,20 +98,63 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
     }
 
     @Override
-    public void OnMultipleFinished(List<MultipleItemList> multipleItemLists) {
+    public void onSubCategoriesFinished(List<SubCategory> subCategories) {
+
         if (view!=null){
             view.hideLoading();
-            view.onGetMultipleSuccess(multipleItemLists);
+            view.onGetSubCategorySuccess(subCategories);
+        }
+
+
+    }
+
+    @Override
+    public void onSubCategoriesFailure(String error) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetSubCategoryFailure(error);
+        }
+
+
+    }
+
+    @Override
+    public void onPopularFinished(List<MultipleItemList> PopularItemLists) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetPopularSuccess(PopularItemLists);
+        }
+
+
+
+    }
+
+    @Override
+    public void onPopularFailure(String error) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetPopularFailure(error);
+        }
+
+
+    }
+
+    @Override
+    public void onPremiumFinished(List<MultipleItemList> PremiumLists) {
+        if (view!=null){
+            view.hideLoading();
+            view.onGetPremiumSuccess(PremiumLists);
         }
 
     }
 
     @Override
-    public void onMultipleFailure(String error) {
+    public void onPremiumFailure(String error) {
         if (view!=null){
             view.hideLoading();
-            view.onGetMultipleFailure(error);
+            view.onGetPremiumFailure(error);
         }
+
 
     }
 }

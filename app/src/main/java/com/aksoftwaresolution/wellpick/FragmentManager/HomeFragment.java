@@ -3,6 +3,7 @@ package com.aksoftwaresolution.wellpick.FragmentManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,14 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aksoftwaresolution.wellpick.CategoryAdapter;
+import com.aksoftwaresolution.wellpick.MultipleAdapter;
 import com.aksoftwaresolution.wellpick.R;
 import com.aksoftwaresolution.wellpick.UserAdapter;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
 import com.aksoftwaresolution.wellpick.model.MultipleItemList;
+import com.aksoftwaresolution.wellpick.model.SubCategory;
+import com.aksoftwaresolution.wellpick.model.SubCategoryAdapter;
 import com.aksoftwaresolution.wellpick.model.User;
 import com.aksoftwaresolution.wellpick.model.UserModel;
 import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
@@ -27,10 +32,14 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment implements UserContract.View {
-    private RecyclerView recyclerView,CategoryRecyclerview;
+    private RecyclerView recyclerView,CategoryRecyclerview,SubCategoryRecyclerView,AllItemRecyclerView;
     private UserPresenter presenter;
     private UserAdapter adapter;
     private CategoryAdapter categoryAdapter;
+    private SubCategoryAdapter subCategoryAdapter;
+    private MultipleAdapter multipleAdapter;
+
+
 
 
     @Override
@@ -40,14 +49,28 @@ public class HomeFragment extends Fragment implements UserContract.View {
 
         recyclerView=homeView.findViewById(R.id.popularImages);
         CategoryRecyclerview=homeView.findViewById(R.id.CategoryRecyclerview);
+       SubCategoryRecyclerView=homeView.findViewById(R.id.SubCategoryRecyclerView);
+//        AllItemRecyclerView=homeView.findViewById(R.id.AllItemRecyclerView);
+
 
         presenter=new UserPresenter(this,new UserModel(getContext()));
         presenter.getPopular();
+        presenter.loadPopularImages();
+        presenter.loadPremiumImages();
+
+
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager layoutManager1=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
+
         recyclerView.setLayoutManager(layoutManager);
+        SubCategoryRecyclerView.setLayoutManager(gridLayoutManager);
         CategoryRecyclerview.setLayoutManager(layoutManager1);
+
+        // class-level variable
+
+
 
 
 
@@ -77,29 +100,63 @@ public class HomeFragment extends Fragment implements UserContract.View {
 
     @Override
     public void onGetCategorySuccess(List<CategoryList> categoryLists) {
-        categoryAdapter=new CategoryAdapter(categoryLists,getContext());
+        categoryAdapter = new CategoryAdapter(categoryLists,SubCategoryRecyclerView, categoryId -> {
+            presenter.loadSubCategories(categoryId);
+        });
         CategoryRecyclerview.setAdapter(categoryAdapter);
 
     }
 
     @Override
-    public void onGetMultipleSuccess(List<MultipleItemList> multipleItemLists) {
+    public void onGetSubCategorySuccess(List<SubCategory> subCategories) {
+        subCategoryAdapter=new SubCategoryAdapter(subCategories,getContext());
+        SubCategoryRecyclerView.setAdapter(subCategoryAdapter);
+        SubCategoryRecyclerView.setAlpha(0f);
+        SubCategoryRecyclerView.animate().alpha(1f).setDuration(300).start();
+
+
+    }
+
+
+    @Override
+    public void onGetPopularSuccess(List<MultipleItemList> itemLists) {
+
+
+    }
+    @Override
+    public void onGetPopularFailure(String error) {
+        Log.d("error",error);
+
+    }
+    @Override
+    public void onGetPremiumSuccess(List<MultipleItemList> itemLists) {
+
 
     }
 
     @Override
-    public void onGetMultipleFailure(String error) {
+    public void onGetPremiumFailure(String error) {
+        Log.d("error",error);
 
     }
+
 
     @Override
     public void onGetUsersFailure(String error) {
+
         Log.d("error",error);
     }
 
     @Override
     public void onGetCategoryFailure(String error) {
         Log.d("error",error);
+
+    }
+
+    @Override
+    public void onGetSubCategoryFailure(String error) {
+        Log.d("suberror",error);
+
 
     }
 }

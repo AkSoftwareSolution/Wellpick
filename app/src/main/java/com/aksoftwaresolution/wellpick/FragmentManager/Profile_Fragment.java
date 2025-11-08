@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.aksoftwaresolution.wellpick.Message.BottomSheet;
 import com.aksoftwaresolution.wellpick.Monetization.AdMob;
 import com.aksoftwaresolution.wellpick.Monetization.AdMobCallback;
 import com.aksoftwaresolution.wellpick.R;
@@ -52,21 +53,23 @@ public class Profile_Fragment extends Fragment {
         });
 
         showRewardedAd.setOnClickListener(v -> {
-            new AdMob(new AdMobCallback() {
-                @Override
-                public void onDismiss() {
-                    Toast.makeText(getContext(),"Ad is Loading.......",Toast.LENGTH_LONG).show();
+//            new AdMob(new AdMobCallback() {
+//                @Override
+//                public void onDismiss() {
+//                    Toast.makeText(getContext(),"Ad is Loading.......",Toast.LENGTH_LONG).show();
+//
+//                }
+//
+//                @Override
+//                public void onUserEarnedReward(RewardItem rewardItem) {
+//                    int rewardAmount=rewardItem.getAmount();
+//                    String rewardType=rewardItem.getType();
+//
+//                    Toast.makeText(getContext(),"UserEarnedReward"+rewardAmount,Toast.LENGTH_LONG).show();
+//                }
+//            }).showRewardedAd(getActivity(),true);
 
-                }
-
-                @Override
-                public void onUserEarnedReward(RewardItem rewardItem) {
-                    int rewardAmount=rewardItem.getAmount();
-                    String rewardType=rewardItem.getType();
-
-                    Toast.makeText(getContext(),"UserEarnedReward"+rewardAmount,Toast.LENGTH_LONG).show();
-                }
-            }).showRewardedAd(getActivity(),true);
+            BottomSheet.showBottomSheet(getContext());
         });
 
         AdMob.setNativeAd(getActivity(),my_template);

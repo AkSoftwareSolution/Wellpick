@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".FragmentManager.HomeFragment"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     >
 
     <androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,7 @@
            android:gravity="center|left"
            android:text="Category"
            android:fontFamily="@font/khair"
+           android:layout_marginLeft="5dp"
            />
        <TextView
            android:id="@+id/SeeMore"
@@ -43,13 +45,34 @@
            />
 
    </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/CategoryRecyclerview"
+        android:orientation="horizontal"
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/CategoryRecyclerview"
+            />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/SubCategoryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
         />
+
+
+
+
 
 
 

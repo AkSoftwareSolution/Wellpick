@@ -1,32 +1,18 @@
 package com.aksoftwaresolution.wellpick;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.aksoftwaresolution.wellpick.contract.UserContract;
-import com.aksoftwaresolution.wellpick.model.User;
-import com.aksoftwaresolution.wellpick.model.UserModel;
-import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private static int SPLASH_TIME_OUT = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +24,26 @@ public class MainActivity extends AppCompatActivity  {
             return insets;
         });
 
-// Delay দিয়ে অন্য Activity তে নেওয়া
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(i);
-                finish(); // Splash শেষ হলে আর ফেরা যাবে না
-            }
-        }, SPLASH_TIME_OUT);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            // Android 12 বা তার উপরে হলে Splash না দেখিয়ে সরাসরি HomeActivity তে যাওয়া হবে
+            Intent i = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(i);
+            finish();
+        } else {
+            // Android 12 এর নিচে হলে Splash screen দেখাবে
+            setContentView(R.layout.activity_main); // তোমার splash layout
 
+            int SPLASH_TIME_OUT = 2000; // উদাহরণ: ২ সেকেন্ড
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(i);
+                    finish(); // Splash শেষ হলে আর ফেরা যাবে না
+                }
+            }, SPLASH_TIME_OUT);
+        }
 
     }
-
 }
