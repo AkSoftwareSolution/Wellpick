@@ -11,8 +11,6 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
-import com.aksoftwaresolution.wellpick.FragmentManager.HomeFragment;
-import com.aksoftwaresolution.wellpick.HomeActivity;
 import com.aksoftwaresolution.wellpick.MainActivity;
 import com.aksoftwaresolution.wellpick.R;
 import com.google.firebase.messaging.FirebaseMessagingService;

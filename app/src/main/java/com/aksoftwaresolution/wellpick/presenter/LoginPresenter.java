@@ -16,10 +16,10 @@ public class LoginPresenter implements LoginContract.LoginPresenter,LoginContrac
 
 
     @Override
-    public void onSuccess(LoginList loginList) {
+    public void onSuccess(String message) {
         if (loginView!=null){
             loginView.hideLoading();
-            loginView.onLoginSuccess(loginList);
+            loginView.onLoginSuccess(message);
         }
 
     }

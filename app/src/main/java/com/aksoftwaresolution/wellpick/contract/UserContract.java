@@ -1,7 +1,6 @@
 package com.aksoftwaresolution.wellpick.contract;
 
 import com.aksoftwaresolution.wellpick.model.CategoryList;
-import com.aksoftwaresolution.wellpick.model.MultipleItemList;
 import com.aksoftwaresolution.wellpick.model.SubCategory;
 import com.aksoftwaresolution.wellpick.model.User;
 
@@ -15,9 +14,7 @@ public interface UserContract {
         void onGetUsersSuccess(java.util.List<User> users);
         void onGetCategorySuccess(java.util.List<CategoryList> users);
         void onGetSubCategorySuccess(java.util.List<SubCategory> subCategories);
-        void onGetPopularSuccess(List<MultipleItemList> itemLists);
-        void onGetPopularFailure(String error);
-        void onGetPremiumSuccess(List<MultipleItemList> itemLists);
+        void onGetPremiumSuccess(List<SubCategory> itemLists);
         void onGetPremiumFailure(String error);
         void onGetUsersFailure(String error);
         void onGetCategoryFailure(String error);
@@ -27,7 +24,6 @@ public interface UserContract {
     interface Presenter {
         void getPopular();
         void loadSubCategories(String categoryId);
-        void loadPopularImages();
         void loadPremiumImages();
 
     }
@@ -36,16 +32,11 @@ public interface UserContract {
         void getPopularImages(OnFinishedListener listener);
         void getCategory(OnCategoryFinishedListener listener);
         void SubCategoriesData(String categoryId,OnSubCategoriesFinishedListener onSubCategoriesFinishedListener);
-        void getPopularItemImages(OnPopularFinishedListener onPopularFinishedListener);
         void getPremiumImages(OnPremiumFinishedListener onPremiumFinishedListener);
 
-        interface OnPopularFinishedListener {
-            void onPopularFinished(List<MultipleItemList>PopularItemLists);
-            void onPopularFailure(String error);
 
-        }
         interface OnPremiumFinishedListener {
-            void onPremiumFinished(List<MultipleItemList> PremiumLists);
+            void onPremiumFinished(List<SubCategory> PremiumLists);
             void onPremiumFailure(String error);
 
         }

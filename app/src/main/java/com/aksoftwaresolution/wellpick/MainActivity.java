@@ -9,6 +9,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.aksoftwaresolution.wellpick.Message.InitMobileAds;
+import com.aksoftwaresolution.wellpick.activity.HomeActivity;
+
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity  {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
             // Android 12 বা তার উপরে হলে Splash না দেখিয়ে সরাসরি HomeActivity তে যাওয়া হবে

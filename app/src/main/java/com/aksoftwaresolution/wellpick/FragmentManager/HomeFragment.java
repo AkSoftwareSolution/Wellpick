@@ -11,19 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aksoftwaresolution.wellpick.CategoryAdapter;
-import com.aksoftwaresolution.wellpick.MultipleAdapter;
 import com.aksoftwaresolution.wellpick.R;
-import com.aksoftwaresolution.wellpick.UserAdapter;
+import com.aksoftwaresolution.wellpick.adapter.CategoryAdapter;
+import com.aksoftwaresolution.wellpick.adapter.SubCategoryAdapter;
+import com.aksoftwaresolution.wellpick.adapter.UserAdapter;
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
-import com.aksoftwaresolution.wellpick.model.MultipleItemList;
 import com.aksoftwaresolution.wellpick.model.SubCategory;
-import com.aksoftwaresolution.wellpick.model.SubCategoryAdapter;
 import com.aksoftwaresolution.wellpick.model.User;
 import com.aksoftwaresolution.wellpick.model.UserModel;
 import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
@@ -37,7 +32,6 @@ public class HomeFragment extends Fragment implements UserContract.View {
     private UserAdapter adapter;
     private CategoryAdapter categoryAdapter;
     private SubCategoryAdapter subCategoryAdapter;
-    private MultipleAdapter multipleAdapter;
 
 
 
@@ -50,12 +44,11 @@ public class HomeFragment extends Fragment implements UserContract.View {
         recyclerView=homeView.findViewById(R.id.popularImages);
         CategoryRecyclerview=homeView.findViewById(R.id.CategoryRecyclerview);
        SubCategoryRecyclerView=homeView.findViewById(R.id.SubCategoryRecyclerView);
-//        AllItemRecyclerView=homeView.findViewById(R.id.AllItemRecyclerView);
+
 
 
         presenter=new UserPresenter(this,new UserModel(getContext()));
         presenter.getPopular();
-        presenter.loadPopularImages();
         presenter.loadPremiumImages();
 
 
@@ -117,19 +110,8 @@ public class HomeFragment extends Fragment implements UserContract.View {
 
     }
 
-
     @Override
-    public void onGetPopularSuccess(List<MultipleItemList> itemLists) {
-
-
-    }
-    @Override
-    public void onGetPopularFailure(String error) {
-        Log.d("error",error);
-
-    }
-    @Override
-    public void onGetPremiumSuccess(List<MultipleItemList> itemLists) {
+    public void onGetPremiumSuccess(List<SubCategory> itemLists) {
 
 
     }

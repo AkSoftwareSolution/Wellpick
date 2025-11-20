@@ -2,7 +2,6 @@ package com.aksoftwaresolution.wellpick.presenter;
 
 import com.aksoftwaresolution.wellpick.contract.UserContract;
 import com.aksoftwaresolution.wellpick.model.CategoryList;
-import com.aksoftwaresolution.wellpick.model.MultipleItemList;
 import com.aksoftwaresolution.wellpick.model.SubCategory;
 import com.aksoftwaresolution.wellpick.model.User;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class UserPresenter implements UserContract.Presenter,UserContract.Model.OnFinishedListener,
         UserContract.Model.OnCategoryFinishedListener,
-        UserContract.Model.OnSubCategoriesFinishedListener,UserContract.Model.OnPopularFinishedListener,
+        UserContract.Model.OnSubCategoriesFinishedListener,
         UserContract.Model.OnPremiumFinishedListener {
     private UserContract.View view;
     private UserContract.Model model;
@@ -60,16 +59,6 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
     }
 
 
-
-    @Override
-    public void loadPopularImages() {
-        if (view!=null){
-            view.showLoading();
-            model.getPopularItemImages(this);
-        }
-
-    }
-
     @Override
     public void loadPremiumImages() {
         if (view!=null){
@@ -118,29 +107,10 @@ public class UserPresenter implements UserContract.Presenter,UserContract.Model.
 
     }
 
-    @Override
-    public void onPopularFinished(List<MultipleItemList> PopularItemLists) {
-        if (view!=null){
-            view.hideLoading();
-            view.onGetPopularSuccess(PopularItemLists);
-        }
 
-
-
-    }
 
     @Override
-    public void onPopularFailure(String error) {
-        if (view!=null){
-            view.hideLoading();
-            view.onGetPopularFailure(error);
-        }
-
-
-    }
-
-    @Override
-    public void onPremiumFinished(List<MultipleItemList> PremiumLists) {
+    public void onPremiumFinished(List<SubCategory> PremiumLists) {
         if (view!=null){
             view.hideLoading();
             view.onGetPremiumSuccess(PremiumLists);

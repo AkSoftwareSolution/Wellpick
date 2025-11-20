@@ -9,7 +9,7 @@ public interface LoginContract {
 
         void hideLoading();
 
-        void onLoginSuccess(LoginList loginList);
+        void onLoginSuccess(String message);
 
         void onLoginFailure(String message);
 
@@ -36,7 +36,7 @@ public interface LoginContract {
         }
 
         interface OnLoginFinishedListener {
-            void onSuccess(LoginList loginList);
+            void onSuccess(String message);
 
             void onFailure(String message);
 
