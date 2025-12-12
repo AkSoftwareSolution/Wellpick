@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="gray_light">#F5F6FF</color>
+    <color name="gray_text">#8081A0</color>
+    <color name="divider">#E2E3F0</color>
+    <color name="black">#1A1A2E</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Premium Colors -->
+    <color name="premium_purple">#7B4DFF</color>
+    <color name="premium_blue">#4A6CFF</color>
+    <color name="premium_green">#27D97C</color>
 </resources>

@@ -13,10 +13,10 @@
 
     <ImageView
         android:id="@+id/premiumBadge"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_gravity="top|end"
         android:layout_margin="8dp"
-        android:src="@drawable/img_12"
+        android:src="@drawable/img_21"
         android:visibility="gone" />
 </FrameLayout>

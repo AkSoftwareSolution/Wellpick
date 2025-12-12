@@ -9,7 +9,7 @@
     <item
         android:id="@+id/exploreIcon"
         android:title="explore"
-        android:icon="@drawable/img_11"
+        android:icon="@drawable/img_19"
         />
     <item
         android:id="@+id/premiumIcon"
