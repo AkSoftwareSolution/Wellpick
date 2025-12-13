@@ -54,6 +54,7 @@ public class VerificationCode extends AppCompatActivity {
        setupOtpWatcher(code5);
        setupOtpWatcher(code6);
 
+       // OTP Field Watcher and Button Enable/Disable
 
        moveToNext(code1, code2);
        moveToNext(code2, code3);
@@ -139,7 +140,7 @@ public class VerificationCode extends AppCompatActivity {
         current.setOnKeyListener((v, keyCode, event) -> {
             if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL) {
                 if (current.getText().toString().isEmpty()) {
-                    previous.requestFocus();   // পূর্বের ফিল্ডে যাবে
+                    previous.requestFocus();   //
                 }
             }
             return false;
