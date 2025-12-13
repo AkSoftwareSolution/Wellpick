@@ -1,11 +1,14 @@
 package com.aksoftwaresolution.wellpick.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +17,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.aksoftwaresolution.wellpick.Message.CustomToast;
 import com.aksoftwaresolution.wellpick.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class VerificationCode extends AppCompatActivity {
 
-    TextView tvSendOptEmail;
-    TextInputEditText code1, code2, code3, code4, code5, code6;
-    AppCompatButton verifyOtp_btn;
+   private TextView tvSendOptEmail;
+   private TextInputEditText code1, code2, code3, code4, code5, code6;
+   private AppCompatButton verifyOtp_btn;
+   private ImageView icon_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +39,48 @@ public class VerificationCode extends AppCompatActivity {
             return insets;
         });
 
-
-
-
+       // Find Views
        code1=findViewById(R.id.code1);
        code2=findViewById(R.id.code2);
        code3=findViewById(R.id.code3);
        code4=findViewById(R.id.code4);
        code5=findViewById(R.id.code5);
        code6=findViewById(R.id.code6);
+       icon_back=findViewById(R.id.icon_back);
        verifyOtp_btn=findViewById(R.id.verifyOtp_btn);
        tvSendOptEmail=findViewById(R.id.tvSendOptEmail);
 
-       // OTP Field Watcher and Button Enable/Disable
+        /* verifyOtp_btn */
+       verifyOtp_btn.setOnClickListener(v -> {
+
+            String d1 = code1.getText().toString().trim();
+            String d2 = code2.getText().toString().trim();
+            String d3 = code3.getText().toString().trim();
+            String d4 = code4.getText().toString().trim();
+            String d5 = code5.getText().toString().trim();
+            String d6 = code6.getText().toString().trim();
+
+            if (d1.isEmpty() || d2.isEmpty() || d3.isEmpty()
+                    || d4.isEmpty() || d5.isEmpty() || d6.isEmpty()) {
+                // OTP Empty no Action
+                CustomToast.showCustomToast(VerificationCode.this, "Please enter OTP");
+                return;
+            }
+
+            // OTP filled → Next Activity
+            Intent intent = new Intent(VerificationCode.this, ConformPasswordActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+       icon_back.setOnClickListener(v -> {
+           onBackPressed();
+       });
+
+
+
+
+        // OTP Field Watcher and Button Enable/Disable
        setupOtpWatcher(code1);
        setupOtpWatcher(code2);
        setupOtpWatcher(code3);

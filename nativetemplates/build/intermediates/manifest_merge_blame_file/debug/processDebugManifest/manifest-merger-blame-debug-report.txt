@@ -5,8 +5,8 @@
 5    <uses-sdk android:minSdkVersion="16" />
 6
 7    <application android:supportsRtl="true" >
-7-->/home/abul-khair/AndroidStudioProjects/Wellpick2/nativetemplates/src/main/AndroidManifest.xml:4:3-6:17
-7-->/home/abul-khair/AndroidStudioProjects/Wellpick2/nativetemplates/src/main/AndroidManifest.xml:4:16-42
+7-->/home/abul-khair/AndroidStudioProjects/Wellpick1/nativetemplates/src/main/AndroidManifest.xml:4:3-6:17
+7-->/home/abul-khair/AndroidStudioProjects/Wellpick1/nativetemplates/src/main/AndroidManifest.xml:4:16-42
 8    </application>
 9
 10</manifest>
