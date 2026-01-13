@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class LoginPreferences {
-
+    //SharedPreferences for Login
     private static final String PREF_NAME = "user_session";
+    //Key for SharedPreferences
     private static final String KEY_IS_LOGGED_IN = "is_logged_in";
+    //Key for SharedPreferences
     private static final String KEY_EMAIL = "email";
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    //SharedPreferences Instance
+    private final SharedPreferences sharedPreferences;
+    //Editor for SharedPreferences
+    private final SharedPreferences.Editor editor;
+    //Constructor
 
     public LoginPreferences(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

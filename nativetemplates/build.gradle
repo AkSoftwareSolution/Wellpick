@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 36
     namespace "com.aksoftwaresolution.wellpick.nativetemplates"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         //noinspection EditedTargetSdkVersion
         targetSdkVersion 36
 

@@ -25,11 +25,16 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class BottomSheet extends BottomSheetDialog implements LoginContract.LoginView {
 
-    private TextView tvLogin, tvSignup, tvGoPrivacyPolicy,tvPrivacyPolicy;
-    private LinearLayout loginLayout, layoutSingUp;
-    private AppCompatButton btLogin;
-    private TextInputEditText edLoginEmail, edLoginPassword;
-    private LoginPresenter loginPresenter;
+    private final TextView tvLogin;
+    private final TextView tvSignup;
+    private final TextView tvGoPrivacyPolicy;
+    private final TextView tvPrivacyPolicy;
+    private final LinearLayout loginLayout;
+    private final LinearLayout layoutSingUp;
+    private final AppCompatButton btLogin;
+    private final TextInputEditText edLoginEmail;
+    private final TextInputEditText edLoginPassword;
+    private final LoginPresenter loginPresenter;
 
     public BottomSheet(Context context) {
         super(context);
@@ -37,7 +42,7 @@ public class BottomSheet extends BottomSheetDialog implements LoginContract.Logi
         View sheetView = LayoutInflater.from(context).inflate(R.layout.sheet_layout, null);
         setContentView(sheetView);
 
-        // ✅ presenter initialization
+        // presenter initialization
         loginPresenter = new LoginPresenter(this, new LoginModel(context));
 
         ImageView closeIcon = sheetView.findViewById(R.id.closeIcon);

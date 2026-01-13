@@ -32,24 +32,25 @@ public class CustomDialog {
 
         LoginPreferences loginPreferences=new LoginPreferences(context);
 
-
-
-
-
+        // Clear data
         clear.setOnClickListener(v -> {
             dialog.dismiss();
         });
 
+        // Logout
         logout.setOnClickListener(v -> {
             loginPreferences.logout();
             dialog.dismiss();
         });
 
+        // Set background color to transparent
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
 
-    }
-    public static void showDeleteAccountDialog(Context context){
+    }//logout
+
+
+     public static void showDeleteAccountDialog(Context context){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         LayoutInflater inflater=LayoutInflater.from(context);
         View view=inflater.inflate(R.layout.delete_account,null);;

@@ -15,6 +15,7 @@ import com.google.android.ump.UserMessagingPlatform;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class InitMobileAds {
+
     private static final String TAG = "GdprJuba";
     private static ConsentInformation consentInformation;
     private static AtomicBoolean isAdSdkCalled = new AtomicBoolean(false);

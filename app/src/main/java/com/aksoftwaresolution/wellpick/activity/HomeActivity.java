@@ -1,23 +1,14 @@
 package com.aksoftwaresolution.wellpick.activity;
 
-import static android.view.Gravity.START;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,32 +24,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.aksoftwaresolution.wellpick.CryptoUtil.CryptoUtil;
 import com.aksoftwaresolution.wellpick.FragmentManager.AboutFragment;
 import com.aksoftwaresolution.wellpick.FragmentManager.ExploreFragment;
 import com.aksoftwaresolution.wellpick.FragmentManager.HomeFragment;
 import com.aksoftwaresolution.wellpick.FragmentManager.PremiumFragment;
 import com.aksoftwaresolution.wellpick.FragmentManager.Profile_Fragment;
 import com.aksoftwaresolution.wellpick.R;
-import com.aksoftwaresolution.wellpick.contract.UserContract;
-import com.aksoftwaresolution.wellpick.model.User;
-import com.aksoftwaresolution.wellpick.model.UserModel;
-import com.aksoftwaresolution.wellpick.presenter.UserPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.List;
-
 public class HomeActivity extends AppCompatActivity  {
-    DrawerLayout drawerlayout;
-    NavigationView navigationView;
-    BottomNavigationView bottomNavigationView;
-    ImageView homeIcon,profileIcon;
+   private DrawerLayout drawerlayout;
+   private NavigationView navigationView;
+   private BottomNavigationView bottomNavigationView;
+   private ImageView homeIcon,profileIcon,premiumIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +53,35 @@ public class HomeActivity extends AppCompatActivity  {
             return insets;
         });
 
-
+        // All Element Introduce by Id
         drawerlayout=findViewById(R.id.drawerlayout);
         navigationView=findViewById(R.id.NavigationView);
         bottomNavigationView=findViewById(R.id.bottomnavigation);
         homeIcon=findViewById(R.id.homeIcon);
         profileIcon=findViewById(R.id.profileIcon);
+        premiumIcon=findViewById(R.id.premiumIcon);
 
+
+
+        //Go to the profile fragment onClickListener here
+        profileIcon.setOnClickListener(v -> {
+           setFragmentManager(new Profile_Fragment());
+
+        });
+
+        //Subscription massage bottomSheet dialog
+        premiumIcon.setOnClickListener(v -> {
+           // SubscriptionMessage.showSubscriptionDialog(this);
+            startActivity(new Intent(HomeActivity.this, SubscriptionActivity.class));
+
+        });
+
+        //called by all mathord
         setFragmentManager(new HomeFragment());
         askNotificationPermission();
         FirebaseInit();
 
+        //open drawerlayout navigationView onclick here
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

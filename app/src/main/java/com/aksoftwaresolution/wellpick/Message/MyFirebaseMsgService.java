@@ -11,7 +11,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
-import com.aksoftwaresolution.wellpick.MainActivity;
+import com.aksoftwaresolution.wellpick.activity.MainActivity;
 import com.aksoftwaresolution.wellpick.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

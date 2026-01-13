@@ -70,7 +70,7 @@ public class VerificationCode extends AppCompatActivity {
             // OTP filled → Next Activity
             Intent intent = new Intent(VerificationCode.this, ConformPasswordActivity.class);
             startActivity(intent);
-            finish();
+
         });
 
        icon_back.setOnClickListener(v -> {

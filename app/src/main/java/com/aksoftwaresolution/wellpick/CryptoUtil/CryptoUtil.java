@@ -31,21 +31,21 @@ public class CryptoUtil {
 
     public String decrypt(String encryptedText) throws Exception {
 
-        // Base64 থেকে আবার byte এ রূপান্তর
+
         byte[] secretbyte = Base64.decode(encryptedText, Base64.DEFAULT);
 
-        // Key কে byte এ কনভার্ট করা
+        /* Key  byte */
         byte[] passwordbyte = KEY.getBytes("UTF-8");
         SecretKeySpec secretKeySpec = new SecretKeySpec(passwordbyte, "AES");
 
-        // Cipher ইনিশিয়ালাইজ করা
+        /* Cipher */
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
-        // ডিক্রিপশন
+        //decryptedBytes
         byte[] decryptedBytes = cipher.doFinal(secretbyte);
 
-        // আবার String এ রূপান্তর করা
+        //decodString
         return new String(decryptedBytes, "UTF-8");
     }
 
