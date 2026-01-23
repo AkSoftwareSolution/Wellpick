@@ -94,8 +94,8 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         } else if (holder instanceof NativeAdViewHolder) {
             NativeAdViewHolder nativeAdViewHolder= (NativeAdViewHolder) holder;
-            //AdMob sdkInitialize
-            AdMob.sdkInitialize(context);
+
+
             //set admob show setNativeAd
             AdMob.setNativeAd((Activity) context,  nativeAdViewHolder.my_template);
 

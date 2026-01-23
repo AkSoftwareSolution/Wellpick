@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
+import com.aksoftwaresolution.wellpick.Message.InitMobileAds;
 import com.google.android.ads.nativetemplates.NativeTemplateStyle;
 import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdError;
@@ -43,11 +44,7 @@ public class AdMob {
     // Initialize the Google Mobile Ads SDK on a background thread.
     public static void sdkInitialize(Context context){
         if (!Constant.IS_AD_ON)return;
-        new Thread(
-                () -> {
-                    MobileAds.initialize(context, initializationStatus -> {});
-                })
-                .start();
+        InitMobileAds.requestConsentForm((Activity) context);
 
     }// Initialize the Google Mobile Ads SDK on a background thread end here
 

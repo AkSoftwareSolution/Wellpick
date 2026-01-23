@@ -64,7 +64,7 @@ public class PremiumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof NativeAdViewHolder) {
             NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) holder;
             // AdMob SDK Initialize
-            AdMob.sdkInitialize(context);
+
             // Load Native Ad
             AdMob.setNativeAd((Activity) context, nativeAdViewHolder.my_template);
 

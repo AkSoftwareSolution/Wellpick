@@ -9,4 +9,8 @@
     <color name="premium_purple">#7B4DFF</color>
     <color name="premium_blue">#4A6CFF</color>
     <color name="premium_green">#27D97C</color>
+    <color name="card_six_month">#FFF7E6</color>
+    <color name="card_yearly">#E8EBFF</color>
+    <color name="card_selected">#D1C4FF</color> <!-- highlight -->
+
 </resources>

@@ -1,151 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="22dp"
-    android:id="@+id/main"
-    android:background="@drawable/bg_subscription_glass">
+    android:background="#7C83FD">
 
+    <!-- White Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <!-- Title -->
-    <TextView
-        android:text="Upgrade to PRO"
-        android:textColor="#ffffff"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="6dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:text="Unlock all premium anime wallpapers"
-        android:textColor="#7C4DFF"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <!-- Plans -->
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Monthly -->
-        <LinearLayout
-            android:id="@+id/monthCard"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:orientation="vertical"
-            android:padding="14dp"
-            android:background="@drawable/btn_neon">
-
-            <TextView
-                android:text="Monthly"
-                android:textColor="#fff"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_margin="10dp"
+                >
 
-            <TextView
-                android:text="৳99"
-                android:textColor="#F5FDFD"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
 
-            <TextView
-                android:text="per month"
-                android:textColor="#F5FDFD"
-                android:textSize="12sp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
-        </LinearLayout>
 
-        <!-- Yearly -->
-        <LinearLayout
-            android:id="@+id/yearCard"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="14dp"
-            android:background="@drawable/card_select">
 
-            <TextView
-                android:text="Yearly"
-                android:textColor="#fff"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
+                <!-- Title -->
+                <TextView
+                    android:text="Remove Ads • Premium"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:text="৳799"
-                android:textColor="#F5FDFD"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
+                <!-- Features with Icons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
 
-            <TextView
-                android:text="Best Value • Save 30%"
-                android:textColor="#F5FDFD"
-                android:textSize="12sp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
-        </LinearLayout>
-    </LinearLayout>
+                    <!-- Feature Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
 
-    <!-- Benefits -->
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/img_23"/>
 
-        <TextView
-            android:text="✔ 4K Anime Wallpapers"
-            android:textColor="#F5FDFD"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="20sp"
-            />
-        <TextView
-            android:text="✔ No Ads Experience"
-            android:textColor="#F5FDFD"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="20sp"
-            />
+                        <TextView
+                            android:text=" No Ads Experience"
+                            android:textSize="18sp"
+                            android:textColor="#555"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            />
+                    </LinearLayout>
 
-        <TextView
-            android:text="✔ Exclusive Anime Packs"
-            android:textColor="#F5FDFD"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            />
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
 
-    <!-- Button -->
-    <Button
-        android:id="@+id/btnPay"
-        android:layout_marginTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:text="Continue Payment"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:background="@drawable/btn_neon"/>
-</LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/img_21"/>
+
+                        <TextView
+                            android:text=" Unlimited Premium Images"
+                            android:textSize="18sp"
+                            android:textColor="#555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <!-- Monthly Plan -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardMonthly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    >
+
+                    <TextView
+                        android:text="৳230 / Month\nAuto-renewable"
+                        android:padding="16dp"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- 6 Month -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSixMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="#FFF7E6"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+
+                    >
+
+                    <TextView
+                        android:text="৳1200 / 6 Month\nSave 15%"
+                        android:padding="16dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Yearly -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardYearly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="#E8EBFF"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+
+                    >
+
+                    <TextView
+                        android:text="৳1999 / Year\nBest Value • Save 30%"
+                        android:padding="16dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Disclaimer -->
+                <TextView
+                    android:text="Payment will be charged to Google Play account. Subscription auto-renews unless cancelled."
+                    android:textSize="12sp"
+                    android:textColor="#777"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!-- Purchase Button -->
+                <Button
+                    android:id="@+id/btnPurchase"
+                    android:text="Go Premium"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#6C63FF"
+                    android:textColor="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
